@@ -27,5 +27,11 @@
       <artifactId>JDA</artifactId>
       <version>5.0.0-beta.9</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java/client -->
+    <dependency>
+      <groupId>com.theokanning.openai-gpt3-java</groupId>
+      <artifactId>client</artifactId>
+      <version>0.12.0</version>
+    </dependency>
   </dependencies>
 </project>
