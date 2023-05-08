@@ -1,4 +1,4 @@
-package com.streisky.discordchatgptbot.commands;
+package com.streisky.discordchatgptbot.command;
 
 import com.streisky.discordchatgptbot.exception.AuthorIsBotException;
 import com.streisky.discordchatgptbot.exception.InvalidCommandException;
@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public abstract class AbstractMessageReceived extends ListenerAdapter {
+public abstract class MessageReceivedAbstract extends ListenerAdapter {
 
     private static final String KEY_WORD = "!xinxila";
 
@@ -37,8 +37,8 @@ public abstract class AbstractMessageReceived extends ListenerAdapter {
         return arguments[0].toLowerCase();
     }
 
-    public CommandEnum getCommand() throws InvalidCommandException {
-        return CommandEnum.getCommand(arguments[1].toLowerCase());
+    public Command getCommand() throws InvalidCommandException {
+        return Command.getCommand(arguments[1].toLowerCase());
     }
 
     public String getContentWithoutKeyWordAndCommand() {
