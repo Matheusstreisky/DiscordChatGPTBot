@@ -1,7 +1,7 @@
 package com.streisky.discordchatgptbot.openai;
 
+import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.service.OpenAiService;
 
 public class OpenAIApi {
 
