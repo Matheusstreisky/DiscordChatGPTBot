@@ -14,8 +14,9 @@ public class AnimeGirlCommand implements CommandInterface {
     @Override
     public List<MessageModel> execute(String content) throws Exception {
         try {
+            String[] parameters = content.split(" ");
             String message = "Here is anime girl for you!";
-            File file = AnimeGirlWithBooksApi.getImageAnimeGirl(getFilter(content), null, null);
+            File file = AnimeGirlWithBooksApi.getImageAnimeGirl(getFilter(parameters), getWidth(parameters), getHeight(parameters));
             FileUpload fileUpload = FileUpload.fromData(file);
             MessageModel messageModel = new MessageModel(message, fileUpload);
 
@@ -25,7 +26,15 @@ public class AnimeGirlCommand implements CommandInterface {
         }
     }
 
-    private String getFilter(String filter){
-        return !filter.isEmpty() ? filter : null;
+    private String getFilter(String[] parameters){
+        return parameters.length == 1 && !parameters[0].isEmpty() ? parameters[0] : null;
+    }
+
+    private String getWidth(String[] parameters){
+        return parameters.length == 2 && !parameters[0].isEmpty() ? parameters[0] : null;
+    }
+
+    private String getHeight(String[] parameters){
+        return parameters.length == 2 && !parameters[1].isEmpty() ? parameters[1] : null;
     }
 }

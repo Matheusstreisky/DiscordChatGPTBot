@@ -5,7 +5,7 @@ import com.theokanning.openai.service.OpenAiService;
 
 public class OpenAIApi {
 
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "API_KEY";
     private static final String MODEL = "text-davinci-003";
     private static final OpenAiService service = new OpenAiService(API_KEY);
 

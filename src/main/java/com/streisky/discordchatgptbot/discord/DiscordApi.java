@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class DiscordApi {
 
-    private static final String TOKEN = "MTEwNDgyMjkxNTU3MDA5MDEyNQ.GfpCFo.W_m0QdKSTlWJhw0DwobTHQ2VXtpz5iguZNmegA";
+    private static final String TOKEN = "TOKEN";
 
     public static void initializeBot() throws InterruptedException {
         JDABuilder.createDefault(TOKEN)

@@ -14,9 +14,6 @@ public class AnimeGirlWithBooksApi {
 
     private static final String URI = "http://localhost:3000/api/";
 
-    public static File getImageAnimeGirl(String filter) throws URISyntaxException, IOException, InterruptedException {
-        return getImageAnimeGirl(filter, null, null);
-    }
     public static File getImageAnimeGirl(String filter, String width, String height) throws URISyntaxException, IOException, InterruptedException {
         byte[] image = getImageFromApi(mountURI(filter, width, height));
         File file = new File("animeGirlWithBooks.jpg");
