@@ -1,13 +1,13 @@
 package com.streisky.discordchatgptbot.discord;
 
-import com.streisky.discordchatgptbot.command.MessageReceivedExecutor;
+import com.streisky.discordchatgptbot.message.MessageReceivedExecutor;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class DiscordApi {
 
-    private static final String TOKEN = "TOKEN";
+    private static final String TOKEN = "MTEwNDgyMjkxNTU3MDA5MDEyNQ.GfpCFo.W_m0QdKSTlWJhw0DwobTHQ2VXtpz5iguZNmegA";
 
     public static void initializeBot() throws InterruptedException {
         JDABuilder.createDefault(TOKEN)
