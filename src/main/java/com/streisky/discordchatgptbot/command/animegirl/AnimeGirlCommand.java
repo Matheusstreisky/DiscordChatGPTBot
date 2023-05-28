@@ -15,22 +15,22 @@ import java.util.Objects;
 
 public class AnimeGirlCommand implements CommandInterface {
 
-    private static final String COMMAND_HELP = "-help";
-    private static final String COMMAND_FILTER = "-filter";
-    private static final String COMMAND_SIZE = "-size";
-    private static final List<String> LIST_COMMANDS = List.of(COMMAND_HELP, COMMAND_FILTER, COMMAND_SIZE);
+    private static final String PARAMETER_HELP = "-help";
+    private static final String PARAMETER_FILTER = "-filter";
+    private static final String PARAMETER_SIZE = "-size";
+    private static final List<String> LIST_PARAMETERS = List.of(PARAMETER_HELP, PARAMETER_FILTER, PARAMETER_SIZE);
 
     @Override
     public List<MessageModel> execute(String content) throws Exception {
         try {
             String[] parameters = content.split(" ");
 
-            if (!validateCommand(parameters) ||
-                    (getCommand(parameters).equalsIgnoreCase(COMMAND_FILTER) && !validateFilter(parameters)) ||
-                    (getCommand(parameters).equalsIgnoreCase(COMMAND_SIZE) && !validateSize(parameters)))
+            if (!validateParameter(parameters) ||
+                    (getParameter(parameters).equalsIgnoreCase(PARAMETER_FILTER) && !validateParameterFilter(parameters)) ||
+                    (getParameter(parameters).equalsIgnoreCase(PARAMETER_SIZE) && !validateParameterSize(parameters)))
                 throw new InvalidCommandException();
 
-            if (getCommand(parameters).equalsIgnoreCase(COMMAND_HELP))
+            if (getParameter(parameters).equalsIgnoreCase(PARAMETER_HELP))
                 return getAnimeGirlHelpResponse();
 
             return getAnimeGirlResponse(parameters);
@@ -41,17 +41,17 @@ public class AnimeGirlCommand implements CommandInterface {
         }
     }
 
-    private boolean validateCommand(String[] parameters) throws URISyntaxException, IOException, InterruptedException {
-        String command = getCommand(parameters);
-        return command.isEmpty() || LIST_COMMANDS.contains(command);
+    private boolean validateParameter(String[] parameters) {
+        String parameter = getParameter(parameters);
+        return parameter.isEmpty() || LIST_PARAMETERS.contains(parameter);
     }
 
-    private boolean validateFilter(String[] parameters) throws URISyntaxException, IOException, InterruptedException {
+    private boolean validateParameterFilter(String[] parameters) throws URISyntaxException, IOException, InterruptedException {
         List<String> listLanguages = AnimeGirlWithBooksApi.getListLanguages();
         return listLanguages.contains(getFilter(parameters));
     }
 
-    private boolean validateSize(String[] parameters) {
+    private boolean validateParameterSize(String[] parameters) {
         try {
             Integer.parseInt(Objects.requireNonNull(getWidth(parameters)));
             Integer.parseInt(Objects.requireNonNull(getHeight(parameters)));
@@ -63,8 +63,8 @@ public class AnimeGirlCommand implements CommandInterface {
 
     private List<MessageModel> getAnimeGirlHelpResponse() throws URISyntaxException, IOException, InterruptedException {
         String messageListCommands = formatText(
-                "Here is the list of available commands: " + System.lineSeparator() +
-                String.join(System.lineSeparator(), LIST_COMMANDS)
+                "Here is the list of available parameters: " + System.lineSeparator() +
+                String.join(System.lineSeparator(), LIST_PARAMETERS)
         );
 
         List<String> languages = AnimeGirlWithBooksApi.getListLanguages();
@@ -92,7 +92,7 @@ public class AnimeGirlCommand implements CommandInterface {
         return TEXT_FORMATTER + text + TEXT_FORMATTER;
     }
 
-    private String getCommand(String[] parameters) {
+    private String getParameter(String[] parameters) {
         return parameters.length >= 1 && !parameters[0].isEmpty() ? parameters[0] : "";
     }
 
