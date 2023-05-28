@@ -1,6 +1,6 @@
 package com.streisky.discordchatgptbot.discord;
 
-import com.streisky.discordchatgptbot.command.MessageReceivedExecutor;
+import com.streisky.discordchatgptbot.message.MessageReceivedExecutor;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
