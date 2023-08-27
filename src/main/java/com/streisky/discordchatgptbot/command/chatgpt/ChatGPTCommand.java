@@ -27,8 +27,7 @@ public class ChatGPTCommand implements CommandInterface {
         for (int i = 0; i < input.length(); i += size) {
             int endIndex = Math.min(i + size, input.length());
             String string = input.substring(i, endIndex);
-            MessageModel messageModel = new MessageModel(string);
-            list.add(messageModel);
+            list.add(new MessageModel(string));
         }
 
         return list;

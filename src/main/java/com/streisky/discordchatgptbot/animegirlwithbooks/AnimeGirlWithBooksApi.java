@@ -5,6 +5,7 @@ import com.streisky.discordchatgptbot.utils.JsonUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -34,7 +35,7 @@ public class AnimeGirlWithBooksApi {
         HttpResponse<byte[]> response = HttpClient.newHttpClient()
                 .send(request, HttpResponse.BodyHandlers.ofByteArray());
 
-        return response.statusCode() == 200 ? response.body() : null;
+        return response.statusCode() == HttpURLConnection.HTTP_OK ? response.body() : null;
     }
 
     public static List<String> getListLanguages() throws URISyntaxException, IOException, InterruptedException {
@@ -49,7 +50,7 @@ public class AnimeGirlWithBooksApi {
         HttpResponse<String> response = HttpClient.newHttpClient()
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response.statusCode() == 200 ?
+        return response.statusCode() == HttpURLConnection.HTTP_OK ?
                 (CurrentIMGS) JsonUtils.convertJsonToObject(CurrentIMGS.class, response.body()) :
                 null;
     }
