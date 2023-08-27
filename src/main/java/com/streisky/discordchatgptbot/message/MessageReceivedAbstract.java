@@ -1,5 +1,6 @@
-package com.streisky.discordchatgptbot.command;
+package com.streisky.discordchatgptbot.message;
 
+import com.streisky.discordchatgptbot.command.Command;
 import com.streisky.discordchatgptbot.exception.AuthorIsBotException;
 import com.streisky.discordchatgptbot.exception.InvalidCommandException;
 import com.streisky.discordchatgptbot.exception.InvalidKeywordException;
@@ -42,9 +43,9 @@ public abstract class MessageReceivedAbstract extends ListenerAdapter {
     }
 
     public String getContentWithoutKeyWordAndCommand() {
-        String contentWithoutKeyWordAndCommand = content.replace(arguments[0] + " ", "");
-        contentWithoutKeyWordAndCommand = contentWithoutKeyWordAndCommand.replace(arguments[1] + " ", "");
+        String contentWithoutKeyWordAndCommand = content.replace(arguments[0], "");
+        contentWithoutKeyWordAndCommand = contentWithoutKeyWordAndCommand.replace(arguments[1], "");
 
-        return content = contentWithoutKeyWordAndCommand;
+        return contentWithoutKeyWordAndCommand.trim();
     }
 }
