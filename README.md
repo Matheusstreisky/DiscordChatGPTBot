@@ -24,5 +24,29 @@ Example:
 ```bash
 !xinxila chatgpt write lorem ipsum
 ```
+## animegirl
+The animegirl command uses the api found in project [AnimeGirls-with-Books-API](https://github.com/feijoes/AnimeGirls-with-Books-API) to make a request and return the image generated to the user. This command has 3 parameters that can be added to ask for help, filter or determine size.
+
+### -help:
+Returns the list of parameters for this command, as well as the list of values accepted by the filter.
+
+### -filter:
+The image to be generated will be filtered according to one of the values listed by the -help command, returning an image related to that theme.
+
+### -size:
+Receives two integer values to determine the width and height (in this order) of the image to be generated.
+
+Examples:
+```bash
+!xinxila animegirl -help
+```
+```bash
+!xinxila animegirl -filter SQL
+```
+```bash
+!xinxila animegirl -size 100 100
+```
+
+
 # Very Important Observation
 This bot's nickname is ***ChatGPT Xinxila's Bot***
