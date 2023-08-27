@@ -1,9 +1,7 @@
-package com.streisky.discordchatgptbot.command;
+package com.streisky.discordchatgptbot.message;
 
-import com.streisky.discordchatgptbot.exception.AuthorIsBotException;
-import com.streisky.discordchatgptbot.exception.InvalidCommandException;
-import com.streisky.discordchatgptbot.exception.InvalidKeywordException;
-import com.streisky.discordchatgptbot.exception.OpenAICommunicationErrorException;
+import com.streisky.discordchatgptbot.command.CommandInterface;
+import com.streisky.discordchatgptbot.exception.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
@@ -19,11 +17,16 @@ public class MessageReceivedExecutor extends MessageReceivedAbstract {
             validate(event);
 
             CommandInterface command = getCommand().getCommandInterface();
-            List<String> response = command.execute(getContentWithoutKeyWordAndCommand());
-            response.forEach((r) -> messageChannel.sendMessage(r).queue());
+            List<MessageModel> response = command.execute(getContentWithoutKeyWordAndCommand());
+            response.forEach((r) -> {
+                if (r.getFile() != null)
+                    messageChannel.sendMessage(r.getMessage()).addFiles(r.getFile()).queue();
+                else
+                    messageChannel.sendMessage(r.getMessage()).queue();
+            });
         } catch (AuthorIsBotException | InvalidKeywordException e) {
             System.out.println(e.getMessage());
-        } catch (InvalidCommandException | OpenAICommunicationErrorException e) {
+        } catch (InvalidCommandException | OpenAICommunicationErrorException | GetAnimeGirlErrorException e) {
             messageChannel.sendMessage(e.getMessage()).queue();
         } catch (Exception e) {
             Logger logger = Logger.getLogger(MessageReceivedExecutor.class.getName());
