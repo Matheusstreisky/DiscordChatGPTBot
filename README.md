@@ -7,7 +7,7 @@ The project is simple, it consists of using JDA (Java Discord API) to read comma
 ## Commands
 To call this bot in a chat, the expression *"!xinxila"* was chosen as the keyword. This keyword must be followed by commands to perform an action.
 
-This bot has only two commands: *"ping"* and *"chatgpt"*.
+This bot has only three commands: *"ping"*, *"chatgpt"* and *animegirl*.
 
 ### ping
 The *ping* command will just return the text "Pong!" in the Discord chat. A prank that serves to check if the bot is working.
